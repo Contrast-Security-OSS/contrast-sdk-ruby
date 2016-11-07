@@ -1,12 +1,28 @@
 require "contrast/user_api/version"
 
+## APIs
+
+require "contrast/user_api/agent_api"
+
+## Models
+
 # Global
 require "contrast/user_api/field_error_item"
+require "contrast/user_api/interval_frequency_item"
 
 # Agent Request
 require "contrast/user_api/agent_profile_request"
 
+# Agent Resource
+require "contrast/user_api/agent_profile_resource"
 
+# Agent Reponse
+require "contrast/user_api/response"
+require "contrast/user_api/agent_profile_response"
+require "contrast/user_api/agent_profiles_response"
+require "contrast/user_api/agent_activity_response"
+require "contrast/user_api/agent_versions_response"
+require "contrast/user_api/applications_agent_activity_response"
 
 module Contrast
   module UserApi
