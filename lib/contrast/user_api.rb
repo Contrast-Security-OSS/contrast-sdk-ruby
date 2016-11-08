@@ -32,6 +32,9 @@ require "contrast/user_api/applications_group_request"
 require "contrast/user_api/quick_filter_response"
 require "contrast/user_api/rule_exclusion_request"
 
+# Application Resource
+require "contrast/user_api/application_base_resource"
+
 module Contrast
   module UserApi
   end
