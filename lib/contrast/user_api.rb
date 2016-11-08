@@ -7,6 +7,7 @@ require "contrast/user_api/agent_api"
 ## Models
 
 # Global
+require "contrast/user_api/response"
 require "contrast/user_api/field_error_item"
 require "contrast/user_api/interval_frequency_item"
 
@@ -16,13 +17,20 @@ require "contrast/user_api/agent_profile_request"
 # Agent Resource
 require "contrast/user_api/agent_profile_resource"
 
-# Agent Reponse
-require "contrast/user_api/response"
+# Agent Response
 require "contrast/user_api/agent_profile_response"
 require "contrast/user_api/agent_profiles_response"
 require "contrast/user_api/agent_activity_response"
 require "contrast/user_api/agent_versions_response"
 require "contrast/user_api/applications_agent_activity_response"
+
+# Application Request
+require "contrast/user_api/app_display_name_request"
+require "contrast/user_api/application_importance_request"
+require "contrast/user_api/application_settings_request"
+require "contrast/user_api/applications_group_request"
+require "contrast/user_api/quick_filter_response"
+require "contrast/user_api/rule_exclusion_request"
 
 module Contrast
   module UserApi
