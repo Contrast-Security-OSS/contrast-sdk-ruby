@@ -39,6 +39,37 @@ module Contrast
         params[:limit] = limit.to_i unless limit.nil?
         params
       end
+
+      def path path = nil
+        org_uuid_required!
+        value_required!(path)
+
+        if path.nil?
+          "/#{ version }/#{ org_uuid }/#{ path }"
+        else
+          "/#{ version }/#{ org_uuid }/#{ path }"
+        end
+      end
+
+      def application_path app_id, sub = nil
+        value_required!(app_id, "Application ID")
+
+        if sub.nil?
+          path("applications/#{ app_id }")
+        else
+          path("applications/#{ app_id }/#{ sub }")
+        end
+      end
+
+      def traces_path app_id, sub = nil
+        value_required!(app_id, "Application ID")
+
+        if sub.nil?
+          path("traces/#{ app_id }")
+        else
+          path("traces/#{ app_id }/#{ sub }")
+        end
+      end
     end
   end
 end

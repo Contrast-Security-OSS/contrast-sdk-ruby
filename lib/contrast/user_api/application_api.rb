@@ -498,41 +498,6 @@ module Contrast
           # TODO: build TraceVisibilityResponse
         end
       end
-
-      
-
-      private
-        
-
-        def path path
-          org_uuid_required!
-          value_required!(path)
-
-          "/#{ version }/#{ org_uuid }/applications/#{ path }"
-        end
-
-        def application_path app_id, path = nil
-          org_uuid_required!
-          value_required!(app_id, "Application ID")
-
-          if path.nil?
-            "/#{ version }/#{ org_uuid }/applications/#{ app_id }"
-          else
-            "/#{ version }/#{ org_uuid }/applications/#{ app_id }/#{ path }"
-          end
-        end
-
-        def traces_path app_id, path = nil
-          org_uuid_required!
-          value_required!(app_id, "Application ID")
-
-          if path.nil?
-            "/#{ version }/#{ org_uuid }/traces/#{ app_id }"
-          else
-            "/#{ version }/#{ org_uuid }/traces/#{ app_id }/#{ path }"
-          end
-        end
-
     end
   end
 end
