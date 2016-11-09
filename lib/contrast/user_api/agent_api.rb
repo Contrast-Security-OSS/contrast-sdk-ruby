@@ -4,10 +4,9 @@ module Contrast
   module UserApi
     class AgentApi
       include HTTParty
+      include ApiSupport
 
       attr_reader :version
-
-      attr_accessor :organization_uuid
 
       def initialize version = "ng"
         @version = version  
@@ -47,22 +46,19 @@ module Contrast
 
       private
 
-        def expect_class! instance, clazz
-          unless agent_profile_request.is_a?(instance, clazz)
-            raise ArgumentError.new("Expected #{ clazz.name } instance")    
-          end
-        end
-
-        def organization_uuid_required!
-          if organization_uuid.nil? || organization_uuid.empty?
-            raise "Organization UUID is required for this endpoint"     
-          end
-        end
-
         def path path 
-          organization_uuid_required!
+          org_uuid_required!
+          value_required!(path)
 
-          "/#{ version }/#{ organization_uuid }/agents/#{ path }"
+          "/#{ version }/#{ org_uuid }/agents/#{ path }"
+        end
+
+        def profile_path name, path
+          org_uuid_required!
+          value_required!(name, "Profile name")
+          value_required!(path)
+
+          "/#{ version }/#{ org_uuid }/agents/profiles/#{ name }/#{ path }"
         end
     end
   end
