@@ -30,6 +30,15 @@ module Contrast
           raise PathIDError.new("Organization UUID is required for this endpoint")
         end
       end
+
+      def query_params expand, archived, merged, limit
+        params = {}
+        params[:expand] = expand unless expand.nil?
+        params[:includeArchived] = archived unless archived.nil?
+        params[:includeMerged] = merged unless merged.nil?
+        params[:limit] = limit.to_i unless limit.nil?
+        params
+      end
     end
   end
 end

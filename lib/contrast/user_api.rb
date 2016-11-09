@@ -4,6 +4,7 @@ require "contrast/user_api/version"
 
 require "contrast/user_api/api_support"
 require "contrast/user_api/agent_api"
+require "contrast/user_api/activity_api"
 require "contrast/user_api/application_api"
 
 ## Models
