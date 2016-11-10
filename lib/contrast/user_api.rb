@@ -11,6 +11,10 @@ require "contrast/user_api/application_api"
 require "contrast/user_api/events_api"
 require "contrast/user_api/history_api"
 require "contrast/user_api/libraries_api"
+require "contrast/user_api/messages_api"
+require "contrast/user_api/modules_api"
+require "contrast/user_api/alerts_api"
+require "contrast/user_api/organizations_api"
 
 ## Models
 
