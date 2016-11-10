@@ -115,6 +115,13 @@ module Contrast
         end
       end
 
+      def organization_search q
+        params = query_params(nil, nil, nil, nil)
+        params[:q] = q 
+        self.class.get(path("search"), { query: params }) do |response|
+          # TODO: build OrganizationSearchResultsResponse
+        end
+      end
     end
   end
 end

@@ -116,7 +116,8 @@ module Contrast
           :update_server_settings,
           :update_assess_settings,
           :update_bot_protection_settings,
-          :update_defend_settings
+          :update_defend_settings,
+          :organization_search
 
 
       attr_reader :host,
