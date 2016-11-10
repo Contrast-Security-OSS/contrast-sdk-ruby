@@ -90,9 +90,33 @@ module Contrast
           :history_scores_by_interval,
           :history_scores_with_defense_by_interval
 
-            
+      def_delegators :@messages_api, 
+          :messages,
+          :next_message
 
+      def_delegators :@modules_api,
+          :modules,
+          :application_modules
 
+      def_delegators :@alerts_api,
+          :alerts,
+          :alert
+
+      def_delegators :@organizations_api,
+          :organization,
+          :organization_administrators,
+          :organization_apikey,
+          :organization_application_roles,
+          :server_need_restart_on_change,
+          :organization_application_stats,
+          :organization_library_stats,
+          :organization_server_stats,
+          :organization_trace_stats,
+          :server_settings,
+          :update_server_settings,
+          :update_assess_settings,
+          :update_bot_protection_settings,
+          :update_defend_settings
 
 
       attr_reader :host,
@@ -116,6 +140,10 @@ module Contrast
         @libraries_api = with_defaults(LibrariesApi)
         @events_api = with_defaults(EventsApi)
         @history_api = with_defaults(HistoryApi)
+        @messages_api = with_defaults(MessagesApi)
+        @modules_api = with_defaults(ModulesApi)
+        @alerts_api = with_defaults(AlertsApi)
+        @organizations_api = with_defaults(OrganizationsApi)
       end
 
       def load_config config 

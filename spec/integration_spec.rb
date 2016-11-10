@@ -18,4 +18,32 @@ describe "This is an Integration Test", :integration do
     pp api.applications
 
   end
+
+  it 'should be able to return system messages from local server' do
+    api = Contrast::UserApi::API.new('spec/integration.yml')
+    pp api.messages
+    pp api.next_message
+  end
+
+  it 'should be able to return modules from local server' do
+    api = Contrast::UserApi::API.new('spec/integration.yml')
+    pp api.modules
+    pp api.modules(['scores'])
+  end
+
+  it 'should be able to return alerts from local server' do
+    api = Contrast::UserApi::API.new('spec/integration.yml')
+    pp api.alerts
+  end
+
+  it 'should return organization and related info from local server' do
+    api = Contrast::UserApi::API.new('spec/integration.yml')
+    pp api.organization
+    pp api.organization_administrators
+    pp api.organization_apikey
+    pp api.organization_application_roles
+    pp api.server_need_restart_on_change('Java')
+    pp api.organization_application_stats
+    
+  end
 end
