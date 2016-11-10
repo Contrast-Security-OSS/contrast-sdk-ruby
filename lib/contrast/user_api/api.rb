@@ -61,6 +61,36 @@ module Contrast
           :application_trace_simplified,
           :application_trace_visibility
 
+      def_delegators :@activity_api,
+          :inactive_activity,
+          :newest_activity,
+          :recent_activity,
+          :application_agent_activity
+
+      def_delegators :@libraries_api,
+          :libraries,
+          :libraries_filter,
+          :dotnet_libraries,
+          :java_libraries,
+          :libraries_subfilter,
+          :libraries_stats
+
+      def_delegators :@events_api,
+          :events,
+          :events_application,
+          :events_server,
+          :events_trace
+
+      def_delegators :@history_api,
+          :history_scores,
+          :history_scores_by_interval,
+          :history_scores_with_defense_by_interval
+
+            
+
+
+
+
       attr_reader :host,
           :org_uuid,
           :api_key, 
