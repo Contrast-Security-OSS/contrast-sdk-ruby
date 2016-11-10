@@ -14,43 +14,41 @@ module Contrast
 
       def profiles expand = false
         params = expand ? { query: { expand: true } } : {}
-        self.class.get(path('profiles'), params)
+        self.class.get(agents_path('profiles'), params)
       end
 
       def profile name, expand = false
         params = expand ? { query: { expand: true } } : {}
-        self.class.get(path("profiles/#{ name }"), params)
+        self.class.get(agents_path("profiles/#{ name }"), params)
       end
 
       def create_profile agent_profile_request
         expect_class!(agent_profile_request, Contrast::UserApi::AgentProfileRequest)
 
         body = { body: agent_profile_request.to_hash }
-        self.class.post(path('profiles'), body)
+        self.class.post(agents_path('profiles'), body)
       end
 
       def update_profile name, agent_profile_request
         expect_class!(agent_profile_request, Contrast::UserApi::AgentProfileRequest)
 
         body = { body: agent_profile_request.to_hash }
-        self.class.put(path("profiles/#{ name }"), body)
+        self.class.put(agents_path("profiles/#{ name }"), body)
       end
 
       def versions 
-        self.class.get(path("profiles/versions"))
+        self.class.get(agents_path("profiles/versions"))
       end
 
       def agent name, platform
-        self.class.get(path("profiles/#{ name }/#{ platform }"))
+        self.class.get(agents_path("profiles/#{ name }/#{ platform }"))
       end
 
       private
 
-        def path path 
-          org_uuid_required!
-          value_required!(path)
-
-          "/#{ version }/#{ org_uuid }/agents/#{ path }"
+        def agents_path path
+           value_required!(path)
+           path("agents/#{ path }")
         end
 
         def profile_path name, path

@@ -6,6 +6,12 @@ module Contrast
       include HTTParty
       include ApiSupport
 
+      attr_reader :version
+
+      def initialize version = "ng"
+        @version = version  
+      end
+
       def applications_allowed
         self.class.get(path("applications/allowed")) do |response|
           # TODO: build ApplicationsAllowedResponse
@@ -22,7 +28,7 @@ module Contrast
           params[:filters] = filters
         end
 
-        self.cass.get(path("applications/filter"), { query: params }) do |response|
+        self.class.get(path("applications/filter"), { query: params }) do |response|
           # TODO: build ApplicationsFilterResponse
         end
       end
@@ -328,7 +334,7 @@ module Contrast
         end
       end
 
-      def application_trace app_id, trace_uuid, expand = nil
+      def application_filter_trace app_id, trace_uuid, expand = nil
         params = query_params(expand, nil, nil, nil)
         self.class.get(trace_path(app_id, "filter/#{ trace_uuid }"), { query: params }) do |response|
           # TODO: build TraceResponse
