@@ -57,6 +57,33 @@ module Contrast
           # TODO: build LibrariesStatsResponse
         end
       end
+
+      def libraries_filters_listing filter_type 
+        params = query_params(nil, nil, nil, nil)
+        params[:filterType] = filter_type
+        self.class.get(global_path("libraries/filters/listing"), { query: params }) do |response|
+          # TODO: LibraryFilterCatalogResponse
+        end
+      end
+
+      def library_policy 
+        self.class.get(path("library/policy")) do |response|
+          # TODO: LibraryPolicyResponse
+        end
+      end
+
+      def update_library_policy policy
+        expect_class!(policy, Contrast::UserApi::LibraryPolicyRequest)
+        self.class.put(path("library/policy"), { body: policy }) do |response|
+          # TODO: BaseApiResponse
+        end
+      end
+
+      def library_policy_libraries
+        self.class.get(path("library/policy/libraries")) do |response|
+          # TODO: build LibrariesPolicyResponse
+        end
+      end
     end
   end
 end

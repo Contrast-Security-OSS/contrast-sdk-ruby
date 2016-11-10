@@ -40,6 +40,10 @@ module Contrast
         params
       end
 
+      def global_path path
+        "/#{ version }/#{ path }"
+      end
+
       def path path = nil
         org_uuid_required!
         value_required!(path)

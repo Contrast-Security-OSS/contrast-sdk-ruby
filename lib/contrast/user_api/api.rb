@@ -73,7 +73,11 @@ module Contrast
           :dotnet_libraries,
           :java_libraries,
           :libraries_subfilter,
-          :libraries_stats
+          :libraries_stats,
+          :libraries_filters_listing,
+          :library_policy,
+          :update_library_policy,
+          :library_policy_libraries
 
       def_delegators :@events_api,
           :events,
