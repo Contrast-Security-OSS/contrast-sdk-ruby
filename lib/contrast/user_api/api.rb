@@ -67,18 +67,15 @@ module Contrast
           :authorization_base64
 
       def initialize config = nil
-        if config.nil?
-          # TODO: look in common places for configuration YAML
-        elsif config.is_a?(String)
-          # TODO: use the string as a file path to load the configuration YAML
-        elsif config.is_a?(Hash)
-          # TODO: load configuration items from the given hash
-        end
+        options = load_config(config)
+        raise ArgumentError.new("Unable to load config options from #{ config }") unless options.is_a?(Hash)
+        raise ArgumentError.new("Expected a configuration section named 'teamserver'") unless options['teamserver'].is_a?(Hash)
 
-        @host = 'http://localhost:19080/Contrast/'
-        @org_uuid = '9c1dd905-e8d5-447b-b1be-00cbda0d0e67'
-        @api_key = 'demo'
-        @authorization_base64 = 'Y29udHJhc3RfYWRtaW46ZGVtbw=='
+        teamserver = options['teamserver']
+        @host = teamserver['host'] # 'http://localhost:19080/Contrast/'
+        @org_uuid = teamserver['org_uuid'] # '9c1dd905-e8d5-447b-b1be-00cbda0d0e67'
+        @api_key = teamserver['api_key'] # 'demo'
+        @authorization_base64 = teamserver['authorization'] # 'Y29udHJhc3RfYWRtaW46ZGVtbw=='
 
         @activity_api = with_defaults(ActivityApi)
         @application_api = with_defaults(ApplicationApi)
@@ -87,8 +84,26 @@ module Contrast
         @history_api = with_defaults(HistoryApi)
       end
 
+      def load_config config 
+        if config.is_a?(Hash)
+            config
+        else
+          [ (config ? config.to_s : nil ),
+            ENV["CONTRAST_SECURITY_CONFIG"], 
+            'contrast_security.yml', 
+            'config/contrast_security.yml', 
+            '/etc/contrast_security.yml' 
+          ].each do |path|
+            if path && File.readable?(path)
+              break YAML.load(IO.read(path))
+            else
+              nil
+            end
+          end
+        end
+      end
+
       def with_defaults clazz
-p clazz
         inst = clazz.new('api/ng')
         inst.org_uuid = org_uuid
         inst.class.base_uri(base_uri)
