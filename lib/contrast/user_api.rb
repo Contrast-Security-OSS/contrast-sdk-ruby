@@ -14,6 +14,7 @@ require "contrast/user_api/libraries_api"
 require "contrast/user_api/messages_api"
 require "contrast/user_api/modules_api"
 require "contrast/user_api/alerts_api"
+require "contrast/user_api/profile_api"
 require "contrast/user_api/organizations_api"
 require "contrast/user_api/security_api"
 

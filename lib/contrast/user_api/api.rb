@@ -119,6 +119,20 @@ module Contrast
           :update_defend_settings,
           :organization_search
 
+      def_delegators :@profile_api,
+          :roles,
+          :profile,
+          :update_profile,
+          :update_expired_password,
+          :update_password,
+          :password_policy,
+          :user_roles,
+          :toggle_profile,
+          :report_preferences,
+          :update_default_organization,
+          :allowed_organizations,
+          :organization_by_uuid
+
       def_delegators :@security_api,
           :controls,
           :sanitizer_controls,
@@ -166,6 +180,7 @@ module Contrast
         @modules_api = with_defaults(ModulesApi)
         @alerts_api = with_defaults(AlertsApi)
         @organizations_api = with_defaults(OrganizationsApi)
+        @profile_api = with_defaults(ProfileApi)
         @security_api = with_defaults(SecurityApi)
       end
 

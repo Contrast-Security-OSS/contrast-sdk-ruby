@@ -8,7 +8,7 @@ module Contrast
 
       attr_accessor :version
 
-      def initializer version
+      def initialize version
         @version = version
       end
 
@@ -68,8 +68,6 @@ module Contrast
           # TODO: build UserReportPreferencesResponse
         end
       end
-
-
 
       def update_default_organization uuid
         self.class.put(global_path("profile/#{ uuid }/default")) do |response|

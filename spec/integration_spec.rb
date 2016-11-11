@@ -43,6 +43,15 @@ describe "This is an Integration Test", :integration do
     pp api.organization_application_stats
   end
 
+  it 'should return profile info from local server' do
+    pp api.roles
+    pp api.profile
+    pp api.password_policy
+    pp api.user_roles
+    pp api.report_preferences
+    pp api.allowed_organizations
+  end
+
   it 'should return security and validators from local server' do
     pp api.controls
     pp api.sanitizer_controls
