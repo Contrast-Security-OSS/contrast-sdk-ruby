@@ -58,4 +58,21 @@ describe "This is an Integration Test", :integration do
     pp api.validator_controls
     pp api.control_suggestions
   end
+
+  it 'should return score information' do
+    pp api.scores
+    pp api.scores_breakdown_category
+    pp api.scores_breakdown_rule
+    pp api.scores_breakdown_server
+    pp api.scores_breakdown_severity
+    pp api.scores_breakdown_status
+    pp api.scores_breakdown_trace
+    pp api.scores_breakdown_trace_rule
+    pp api.scores_breakdown_trace_severity
+    pp api.scores_breakdown_trace_status
+    pp api.platform_score
+    pp api.platform_score_with_defense
+    pp api.organization_security_score
+    pp api.organization_security_score_with_defense
+  end
 end

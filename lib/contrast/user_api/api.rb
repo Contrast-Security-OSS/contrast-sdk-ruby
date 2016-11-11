@@ -155,6 +155,22 @@ module Contrast
           :delete_validator_control,
           :toggle_validator_control
 
+      def_delegators :@scores_api,
+          :scores,
+          :scores_breakdown_category,
+          :scores_breakdown_rule,
+          :scores_breakdown_server,
+          :scores_breakdown_severity,
+          :scores_breakdown_status,
+          :scores_breakdown_trace,
+          :scores_breakdown_trace_rule,
+          :scores_breakdown_trace_severity,
+          :scores_breakdown_trace_status,
+          :platform_score,
+          :platform_score_with_defense,
+          :organization_security_score,
+          :organization_security_score_with_defense
+
       attr_reader :host,
           :org_uuid,
           :api_key, 
@@ -182,6 +198,7 @@ module Contrast
         @organizations_api = with_defaults(OrganizationsApi)
         @profile_api = with_defaults(ProfileApi)
         @security_api = with_defaults(SecurityApi)
+        @scores_api = with_defaults(ScoresApi)
       end
 
       def load_config config 

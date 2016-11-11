@@ -17,6 +17,7 @@ require "contrast/user_api/alerts_api"
 require "contrast/user_api/profile_api"
 require "contrast/user_api/organizations_api"
 require "contrast/user_api/security_api"
+require "contrast/user_api/scores_api"
 
 ## Models
 
