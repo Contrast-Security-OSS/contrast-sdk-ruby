@@ -119,6 +119,27 @@ module Contrast
           :update_defend_settings,
           :organization_search
 
+      def_delegators :@security_api,
+          :controls,
+          :sanitizer_controls,
+          :sanitizer_control,
+          :create_sanitizer_control, 
+          :update_sanitizer_control, 
+          :toggle_sanitizer_control,
+          :delete_sanitizer_control,
+          :control_suggestions,
+          :create_sanitizer_control_suggestion,
+          :undo_sanitizer_control_suggestion,
+          :delete_sanitizer_control_suggestion,
+          :create_validator_control_suggestion,
+          :undo_validator_control_suggestion,
+          :delete_validator_control_suggestion,
+          :validator_control,
+          :validator_controls,
+          :create_validator_control,
+          :update_validator_control,
+          :delete_validator_control,
+          :toggle_validator_control
 
       attr_reader :host,
           :org_uuid,
@@ -145,6 +166,7 @@ module Contrast
         @modules_api = with_defaults(ModulesApi)
         @alerts_api = with_defaults(AlertsApi)
         @organizations_api = with_defaults(OrganizationsApi)
+        @security_api = with_defaults(SecurityApi)
       end
 
       def load_config config 
