@@ -18,6 +18,10 @@ require "contrast/user_api/profile_api"
 require "contrast/user_api/organizations_api"
 require "contrast/user_api/security_api"
 require "contrast/user_api/scores_api"
+require "contrast/user_api/servers_api"
+require "contrast/user_api/tags_api"
+require "contrast/user_api/traces_api"
+require "contrast/user_api/webhooks_api"
 
 ## Models
 

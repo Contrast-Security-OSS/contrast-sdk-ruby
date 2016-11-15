@@ -65,6 +65,16 @@ module Contrast
         end
       end
 
+      def server_path server_id, sub = nil
+        value_requires!(server_id, "Server ID")
+
+        if sub.nil?
+          path("servers/#{ server_id }")
+        else
+          path("servers/#{ server_id }/#{ sub }")
+        end
+      end
+
       def traces_path app_id, sub = nil
         value_required!(app_id, "Application ID")
 

@@ -15,6 +15,8 @@ describe "This is an Integration Test", :integration do
 
   let(:api) { Contrast::UserApi::API.new('spec/integration.yml') }
 
+  # NOTE: the following specs don't really do anything yet. They hit a
+  # teamserver instance defined in the config file and return a response
   it 'should be able to return applications from local server' do
     pp api.applications
 
@@ -74,5 +76,9 @@ describe "This is an Integration Test", :integration do
     pp api.platform_score_with_defense
     pp api.organization_security_score
     pp api.organization_security_score_with_defense
+  end
+
+  it 'should return server information' do
+    pp api.servers
   end
 end

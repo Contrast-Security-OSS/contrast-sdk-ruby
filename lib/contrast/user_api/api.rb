@@ -171,6 +171,34 @@ module Contrast
           :organization_security_score,
           :organization_security_score_with_defense
 
+      def_delegators :@servers_api,
+          :servers,
+          :active_servers,
+          :servers_filter,
+          :servers_filters,
+          :servers_filters_quick,
+          :servers_filters_by_type,
+          :servers_modes,
+          :server,
+          :server_activity,
+          :server_activity_unity,
+          :server_apptraces,
+          :server_attack_status_breakdown,
+          :server_attack_type_breakdown,
+          :server_attack_rule_breakdown,
+          :server_attack_severity_breakdown,
+          :server_attack_status_breakdown,
+          :server_libraries_breakdown,
+          :update_server_name,
+          :server_properties,
+          :server_urls,
+          :server_attack_urls,
+          :server_vulnerability_urls,
+          :server_libraries,
+          :server_libraries_by_filter,
+          :server_libraries_by_subfilter,
+          :server_library_stats
+
       attr_reader :host,
           :org_uuid,
           :api_key, 
@@ -199,6 +227,7 @@ module Contrast
         @profile_api = with_defaults(ProfileApi)
         @security_api = with_defaults(SecurityApi)
         @scores_api = with_defaults(ScoresApi)
+        @servers_api = with_defaults(ServersApi)
       end
 
       def load_config config 
