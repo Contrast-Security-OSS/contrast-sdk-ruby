@@ -79,6 +79,22 @@ describe "This is an Integration Test", :integration do
   end
 
   it 'should return server information' do
-    pp api.servers
+    pp response = api.servers
+    response.fetch('servers', []).each do |server|
+      server_id = server['server_id']
+      pp api.server(server_id)
+      pp api.server_activity(server_id)
+      pp api.server_activity_unity(server_id)
+      pp api.server_attack_status_breakdown(server_id)
+      pp api.server_attack_type_breakdown(server_id)
+      pp api.server_attack_severity_breakdown(server_id)
+      pp api.server_attack_rule_breakdown(server_id)
+      pp api.server_libraries_breakdown(server_id)
+      pp api.server_properties(server_id)
+    end
+    pp api.active_servers
+    pp api.servers_filter
+    pp api.servers_filters
+    pp api.servers_modes
   end
 end

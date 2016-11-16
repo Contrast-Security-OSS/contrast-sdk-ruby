@@ -132,13 +132,6 @@ module Contrast
         end
       end
 
-      def server_attack_status_breakdown server_id, merged = nil
-        params = query_params(nil, nil, merged, nil)
-        self.class.get(server_path(server_id, "breakdown/attack/status"), { query: params }) do |response|
-          # TODO: build AttackStatusBreakdownResponse
-        end
-      end
-
       def server_libraries_breakdown server_id, archived = nil, merged = nil
         params = query_params(nil, archived, merged, nil)
         self.class.get(server_path(server_id, "libraries/breakdown"), { query: params }) do |response|
