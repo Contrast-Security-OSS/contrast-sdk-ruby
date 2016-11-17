@@ -223,7 +223,7 @@ module Contrast
           :delete_tags_trace,
           :tags_traces,
           :update_tags_traces,
-          :unqiue_traces_by_application,
+          :unique_traces_by_application,
           :create_tag_traces,
           :update_tag_traces,
           :tags_traces_by_server,
@@ -258,6 +258,7 @@ module Contrast
         @security_api = with_defaults(SecurityApi)
         @scores_api = with_defaults(ScoresApi)
         @servers_api = with_defaults(ServersApi)
+        @tags_api = with_defaults(TagsApi)
       end
 
       def load_config config 

@@ -11,7 +11,7 @@ module Contrast
       end
 
       def events limit = nil
-        param = query_params(nil, nil, nil, limit)
+        params = query_params(nil, nil, nil, limit)
         self.class.get(path("events"), { query: params }) do |response|
           # TODO: build ActivityResponse
         end

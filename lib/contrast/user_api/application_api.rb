@@ -42,7 +42,7 @@ module Contrast
           params[:filters] = filters
         end
 
-        self.cass.get(path("applications/filter/short"), { query: params }) do |response|
+        self.class.get(path("applications/filter/short"), { query: params }) do |response|
           # TODO: build ApplicationShortFilterResponse
         end
       end
@@ -95,7 +95,7 @@ module Contrast
 
       def application app_id, expand = nil, merged = nil
         params = query_params(expand, nil, merged, nil)
-        self.class.get(applications_path(app_id), { query: params }) do |response|
+        self.class.get(application_path(app_id), { query: params }) do |response|
           # TODO: build ApplicationResponse
         end
       end
@@ -356,7 +356,7 @@ module Contrast
           params[:request] = request
         end
 
-        self.class.post(trace_path(app_id, "export/csv"), { query: params }) do |response|
+        self.class.post(traces_path(app_id, "export/csv"), { query: params }) do |response|
           # TODO: handle CSV response
         end
       end
@@ -371,7 +371,7 @@ module Contrast
           params[:request] = request
         end
 
-        self.class.post(trace_path(app_id, "export/csv/all"), { query: params }) do |response|
+        self.class.post(traces_path(app_id, "export/csv/all"), { query: params }) do |response|
           # TODO: handle CSV response
         end
       end
@@ -385,7 +385,7 @@ module Contrast
           params[:request] = request
         end
 
-        self.class.post(trace_path(app_id, "export/xml"), { query: params }) do |response|
+        self.class.post(traces_path(app_id, "export/xml"), { query: params }) do |response|
           # TODO: handle XML response
         end
       end
@@ -400,7 +400,7 @@ module Contrast
           params[:request] = request
         end
 
-        self.class.post(trace_path(app_id, "export/xml/all"), { query: params }) do |response|
+        self.class.post(traces_path(app_id, "export/xml/all"), { query: params }) do |response|
           # TODO: handle XML response
         end
       end
