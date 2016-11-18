@@ -160,10 +160,19 @@ describe "This is an Integration Test", :integration do
   end
 
   it 'should return tag information' do
-  pp api
     pp api.applications_tags_list
     pp api.tag_libraries_list
     pp api.tags_servers_list
     pp api.tags_traces
+  end
+
+  it 'should return trace information' do
+    pp api.export_traces_csv
+    pp api.export_all_traces_csv
+    pp api.export_traces_xml
+    pp api.export_all_traces_xml
+    pp api.orgtraces_ids
+    pp api.orgtraces_with_policy_violations
+    pp api.orgtraces_quick_filters
   end
 end

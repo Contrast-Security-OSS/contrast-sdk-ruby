@@ -229,6 +229,21 @@ module Contrast
           :tags_traces_by_server,
           :tags_by_trace
 
+      def_delegators :@traces_api,
+          :delete_trace_set,
+          :export_traces_csv,
+          :export_all_traces_csv,
+          :export_traces_xml,
+          :export_all_traces_xml,
+          :orgtraces_ids,
+          :orgtraces_with_policy_violations,
+          :orgtraces_quick_filters,
+          :delete_orgtrace,
+          :export_traces_filter_and_keycode_csv,
+          :export_traces_filter_and_keycode_xml
+
+
+
       attr_reader :host,
           :org_uuid,
           :api_key, 
@@ -258,6 +273,7 @@ module Contrast
         @security_api = with_defaults(SecurityApi)
         @scores_api = with_defaults(ScoresApi)
         @servers_api = with_defaults(ServersApi)
+        @traces_api = with_defaults(TracesApi)
         @tags_api = with_defaults(TagsApi)
       end
 
