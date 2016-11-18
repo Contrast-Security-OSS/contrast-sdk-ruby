@@ -67,6 +67,14 @@ module Contrast
           :recent_activity,
           :application_agent_activity
 
+      def_delegators :@agent_api,
+          :profiles,
+          :profile,
+          :create_profile,
+          :update_profile,
+          :versions,
+          :agent
+
       def_delegators :@libraries_api,
           :libraries,
           :libraries_filter,
@@ -262,6 +270,7 @@ module Contrast
 
         @activity_api = with_defaults(ActivityApi)
         @application_api = with_defaults(ApplicationApi)
+        @agent_api = with_defaults(AgentApi)
         @libraries_api = with_defaults(LibrariesApi)
         @events_api = with_defaults(EventsApi)
         @history_api = with_defaults(HistoryApi)

@@ -55,6 +55,11 @@ describe "This is an Integration Test", :integration do
     pp api.applications_name
   end
 
+  it 'should be able to return agent info' do
+    pp response = api.profiles
+    pp api.versions
+  end
+
   it 'should be able to return actvity messages from local server' do
     pp api.inactive_activity
     pp api.newest_activity
