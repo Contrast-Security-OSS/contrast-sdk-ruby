@@ -50,14 +50,6 @@ module Contrast
            value_required!(path)
            path("agents/#{ path }")
         end
-
-        def profile_path name, path
-          org_uuid_required!
-          value_required!(name, "Profile name")
-          value_required!(path)
-
-          "/#{ version }/#{ org_uuid }/agents/profiles/#{ name }/#{ path }"
-        end
     end
   end
 end

@@ -1,0 +1,5 @@
+teamserver:
+  host: http://localhost:19080/Contrast # path to server
+  org_uuid: 9c1dd905-e8d5-447b-b1be-00cbda0d0e67 # Organization UUID (visible in the Teamserver interface)
+  api_key: demo # API key in plain text
+  authorization: Y29udHJhc3RfYWRtaW46ZGVtbw== # username:key base 64 encoded (e.g. contrast_admin:demo )

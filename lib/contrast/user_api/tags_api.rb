@@ -45,7 +45,7 @@ module Contrast
         end
       end
 
-      def application_tags_list 
+      def applications_tags_list 
         self.class.get(path("tags/applications/list")) do |response|
           # TODO: TagsResponse
         end

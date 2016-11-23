@@ -66,7 +66,7 @@ module Contrast
       end
 
       def server_path server_id, sub = nil
-        value_requires!(server_id, "Server ID")
+        value_required!(server_id, "Server ID")
 
         if sub.nil?
           path("servers/#{ server_id }")

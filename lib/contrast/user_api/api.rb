@@ -67,6 +67,14 @@ module Contrast
           :recent_activity,
           :application_agent_activity
 
+      def_delegators :@agent_api,
+          :profiles,
+          :profile,
+          :create_profile,
+          :update_profile,
+          :versions,
+          :agent
+
       def_delegators :@libraries_api,
           :libraries,
           :libraries_filter,
@@ -223,11 +231,26 @@ module Contrast
           :delete_tags_trace,
           :tags_traces,
           :update_tags_traces,
-          :unqiue_traces_by_application,
+          :unique_traces_by_application,
           :create_tag_traces,
           :update_tag_traces,
           :tags_traces_by_server,
           :tags_by_trace
+
+      def_delegators :@traces_api,
+          :delete_trace_set,
+          :export_traces_csv,
+          :export_all_traces_csv,
+          :export_traces_xml,
+          :export_all_traces_xml,
+          :orgtraces_ids,
+          :orgtraces_with_policy_violations,
+          :orgtraces_quick_filters,
+          :delete_orgtrace,
+          :export_traces_filter_and_keycode_csv,
+          :export_traces_filter_and_keycode_xml
+
+
 
       attr_reader :host,
           :org_uuid,
@@ -247,6 +270,7 @@ module Contrast
 
         @activity_api = with_defaults(ActivityApi)
         @application_api = with_defaults(ApplicationApi)
+        @agent_api = with_defaults(AgentApi)
         @libraries_api = with_defaults(LibrariesApi)
         @events_api = with_defaults(EventsApi)
         @history_api = with_defaults(HistoryApi)
@@ -258,6 +282,8 @@ module Contrast
         @security_api = with_defaults(SecurityApi)
         @scores_api = with_defaults(ScoresApi)
         @servers_api = with_defaults(ServersApi)
+        @traces_api = with_defaults(TracesApi)
+        @tags_api = with_defaults(TagsApi)
       end
 
       def load_config config 

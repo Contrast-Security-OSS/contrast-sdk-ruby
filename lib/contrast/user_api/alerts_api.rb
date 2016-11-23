@@ -6,7 +6,7 @@ module Contrast
 
       attr_accessor :version
 
-      def initialize version
+      def initialize version = 'ng'
         @version = version
       end
 

@@ -18,16 +18,13 @@ module Contrast
         end
       end
 
+      # FIXME: Documentation refers to filters as an instance of ApplicationsFilterRequest but it 
+      # doesn't seem to be defined
       def applications filters = nil, expand = nil, merged = nil, limit = nil, offset = nil, sort = nil
         params = query_params(expand, nil, merged, limit)
         params[:offset] = offset.to_i unless offset.nil?
         params[:sort] = sort unless sort.nil?
-
-        if filters
-          expect_class!(filters, Contrast::UserApi::ApplicationsFiltersRequest)
-          params[:filters] = filters
-        end
-
+        params[:filters] = filters unless filters.nil?
         self.class.get(path("applications/filter"), { query: params }) do |response|
           # TODO: build ApplicationsFilterResponse
         end
@@ -36,13 +33,8 @@ module Contrast
       def applications_simplified filters = nil, sort = nil
         params = query_params(nil, nil, nil, nil)
         params[:sort] = sort unless sort.nil?
-
-        if filters
-          expect_class!(filters, Contrast::UserApi::ApplicationsFiltersRequest)
-          params[:filters] = filters
-        end
-
-        self.cass.get(path("applications/filter/short"), { query: params }) do |response|
+        params[:filters] = filters unless filters.nil?
+        self.class.get(path("applications/filter/short"), { query: params }) do |response|
           # TODO: build ApplicationShortFilterResponse
         end
       end
@@ -55,12 +47,7 @@ module Contrast
 
       def applications_filters_quick filters = nil
         params = query_params(nil, nil, nil, nil)
-
-        if filters
-          expect_class!(filters, Contrast::UserApi::ApplicationsFiltersRequest)
-          params[:filters] = filters
-        end
-        
+        params[:filters] = filters unless filters.nil?
         self.class.get(path("applications/filters/quick")) do |response|
           # TODO: build QuickFilterResponse
         end
@@ -68,12 +55,7 @@ module Contrast
 
       def applications_subfilters filter_type, filters = nil, archived = nil
         params = query_params(nil, archived, nil, nil)
-
-        if filters
-          expect_class!(filters, Contrast::UserApi::ApplicationsFiltersRequest)
-          params[:filters] = filters
-        end
-
+        params[:filters] = filters unless filters.nil?
         self.class.get(path("applications/filters/#{ filter_type }/listing"), { query: params }) do |response|
           # TODO: build ApplicationFilterCatalogDetailsResponse
         end
@@ -82,12 +64,7 @@ module Contrast
       def applications_name filters = nil, trial = nil, merged = nil
         params = query_params(nil, nil, merged, nil)
         params[:trial] = trial unless trial.nil?
-
-        if filters
-          expect_class!(filters, Contrast::UserApi::ApplicationsFiltersRequest)
-          params[:filters] = filters
-        end
-
+        params[:filters] = filters unless filters.nil?
         self.class.get(path("applications/name"), { query: params }) do |response|
           # TODO: build ApplicationsNameResponse
         end
@@ -95,14 +72,14 @@ module Contrast
 
       def application app_id, expand = nil, merged = nil
         params = query_params(expand, nil, merged, nil)
-        self.class.get(applications_path(app_id), { query: params }) do |response|
+        self.class.get(application_path(app_id), { query: params }) do |response|
           # TODO: build ApplicationResponse
         end
       end
 
       def update_application_importance app_id, importance
         expect_class!(importance, Contrast::UserApi::ApplicationImportanceRequest)
-        self.class.get(application_path(app_id, "importance"), { body: importance.to_hash }) do |response|
+        self.class.put(application_path(app_id, "importance"), { body: importance.to_hash }) do |response|
           # TODO: build BaseApiResponse
         end
       end
@@ -356,7 +333,7 @@ module Contrast
           params[:request] = request
         end
 
-        self.class.post(trace_path(app_id, "export/csv"), { query: params }) do |response|
+        self.class.post(traces_path(app_id, "export/csv"), { query: params }) do |response|
           # TODO: handle CSV response
         end
       end
@@ -371,7 +348,7 @@ module Contrast
           params[:request] = request
         end
 
-        self.class.post(trace_path(app_id, "export/csv/all"), { query: params }) do |response|
+        self.class.post(traces_path(app_id, "export/csv/all"), { query: params }) do |response|
           # TODO: handle CSV response
         end
       end
@@ -385,7 +362,7 @@ module Contrast
           params[:request] = request
         end
 
-        self.class.post(trace_path(app_id, "export/xml"), { query: params }) do |response|
+        self.class.post(traces_path(app_id, "export/xml"), { query: params }) do |response|
           # TODO: handle XML response
         end
       end
@@ -400,21 +377,16 @@ module Contrast
           params[:request] = request
         end
 
-        self.class.post(trace_path(app_id, "export/xml/all"), { query: params }) do |response|
+        self.class.post(traces_path(app_id, "export/xml/all"), { query: params }) do |response|
           # TODO: handle XML response
         end
       end
 
+      # FIXME: Documentation references TraceFilterRequest but does not define it
       def application_trace_uuids app_id, request = nil, sort = nil
         params = query_params(nil, nil, nil, nil)
         params[:sort] = sort unless sort.nil?
-
-        # TODO: verify that this expects a request object and not just an array of strings
-        if request
-          expect_class!(request, Contrast::UserApi::TraceFilterRequest)
-          params[:request] = request
-        end
-
+        params[:request] = request unless request.nil?
         self.class.get(trace_path(app_id, "ids"), { query: params }) do |response|
           # TODO: build TraceUUIDsResponse
         end
